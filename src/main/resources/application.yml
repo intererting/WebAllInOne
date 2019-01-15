@@ -26,3 +26,5 @@ spring:
 
 mybatis:
   type-aliases-package: com.yly.webdemo.bean
+ymlpro:
+  name: 于礼洋
