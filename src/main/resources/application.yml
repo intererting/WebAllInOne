@@ -1,4 +1,28 @@
-server:
-  port: 8081
-  servlet:
-    context-path: /yuliyang #路径映射  http://localhost:8081/yuliyang/hello
+spring:
+  datasource:
+    #    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yuliyang
+    username: root
+    password: root
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+  #设置环境
+  profiles:
+    active: dev
+
+mybatis:
+  type-aliases-package: com.yly.webdemo.bean
