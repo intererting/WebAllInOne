@@ -24,9 +24,12 @@ open class HumanService {
 
     @Transactional
     open fun insertHuman(human: Human) {
-        println(ymlProTest.name)
-        for (person in ymlProTest.persons) {
-            println(person.name)
+//        println(ymlProTest.name)
+//        for (person in ymlProTest.persons) {
+//            println(person.name)
+//        }
+        for ((key, value) in ymlProTest.maps) {
+            println("$key   $value")
         }
 
         humanMapper.insert(human)

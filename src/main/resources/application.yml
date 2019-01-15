@@ -31,3 +31,6 @@ ymlpro:
   persons:
     - name: person1
     - name: person2
+  maps:
+    name: yuliyang
+
