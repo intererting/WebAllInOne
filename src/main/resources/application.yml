@@ -28,3 +28,6 @@ mybatis:
   type-aliases-package: com.yly.webdemo.bean
 ymlpro:
   name: 于礼洋
+  persons:
+    - name: person1
+    - name: person2

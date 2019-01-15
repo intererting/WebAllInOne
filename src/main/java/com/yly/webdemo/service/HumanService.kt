@@ -24,7 +24,11 @@ open class HumanService {
 
     @Transactional
     open fun insertHuman(human: Human) {
-        print(ymlProTest.name)
+        println(ymlProTest.name)
+        for (person in ymlProTest.persons) {
+            println(person.name)
+        }
+
         humanMapper.insert(human)
 //        humanMapper.insert(Human("异常测试是否回滚", 1))
     }
