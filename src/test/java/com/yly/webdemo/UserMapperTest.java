@@ -17,7 +17,8 @@ public class UserMapperTest {
 
     @Test
     public void testInsert() throws Exception {
-        humanMapper.insert(new Human("test", 22));
+        humanMapper.insert(new Human("testA", 22));
+        humanMapper.insert(new Human("testtest", 22));
     }
 
 }
