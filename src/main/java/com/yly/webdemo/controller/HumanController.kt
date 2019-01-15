@@ -7,8 +7,10 @@ import com.yly.webdemo.bean.Human
 import com.yly.webdemo.service.HumanService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 class HumanController {
@@ -23,6 +25,28 @@ class HumanController {
             humanService.insertHuman(human = Human(name, age))
             return ResultSuccess
         } catch (e: Exception) {
+            return ResultFailed
+        }
+    }
+
+    @PostMapping(value = ["/insertHumanBean"])
+    fun insertHuman(@RequestBody human: Human): ResultInfo {
+        try {
+            humanService.insertHuman(human = human)
+            return ResultSuccess
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ResultFailed
+        }
+    }
+
+    @PostMapping(value = ["/uploadFile"])
+    fun insertHumanWithFile(@RequestParam file: MultipartFile): ResultInfo {
+        try {
+            humanService.saveFile(file)
+            return ResultSuccess
+        } catch (e: Exception) {
+            e.printStackTrace()
             return ResultFailed
         }
     }
