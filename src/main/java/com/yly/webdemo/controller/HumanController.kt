@@ -23,9 +23,9 @@ class HumanController {
                     , @RequestParam("age") age: Int): ResultInfo {
         try {
             humanService.insertHuman(human = Human(name, age))
-            return ResultSuccess
+            return ResultSuccess()
         } catch (e: Exception) {
-            return ResultFailed
+            return ResultFailed(message = e.message)
         }
     }
 
@@ -33,10 +33,10 @@ class HumanController {
     fun insertHuman(@RequestBody human: Human): ResultInfo {
         try {
             humanService.insertHuman(human = human)
-            return ResultSuccess
+            return ResultSuccess()
         } catch (e: Exception) {
             e.printStackTrace()
-            return ResultFailed
+            return ResultFailed(message = e.message)
         }
     }
 
@@ -44,10 +44,10 @@ class HumanController {
     fun insertHumanWithFile(@RequestParam file: MultipartFile): ResultInfo {
         try {
             humanService.saveFile(file)
-            return ResultSuccess
+            return ResultSuccess()
         } catch (e: Exception) {
             e.printStackTrace()
-            return ResultFailed
+            return ResultFailed(message = e.message)
         }
     }
 

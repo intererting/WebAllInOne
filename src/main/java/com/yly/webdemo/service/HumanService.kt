@@ -4,17 +4,17 @@ import com.yly.webdemo.YmlProTest
 import com.yly.webdemo.bean.Human
 import com.yly.webdemo.extends.writeFileToDisk
 import com.yly.webdemo.mapper.HumanMapper
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.multipart.MultipartFile
 import java.io.File
-import javax.annotation.Resource
 
 @Service
 open class HumanService {
+
+    private val logger = LoggerFactory.getLogger(javaClass)!!
 
     @Autowired
     lateinit var humanMapper: HumanMapper
@@ -24,12 +24,12 @@ open class HumanService {
 
     @Transactional
     open fun insertHuman(human: Human) {
-//        println(ymlProTest.name)
+//         logger.debug(ymlProTest.name)
 //        for (person in ymlProTest.persons) {
-//            println(person.name)
+//             logger.debug(person.name)
 //        }
         for ((key, value) in ymlProTest.maps) {
-            println("$key   $value")
+            logger.info("$key   $value")
         }
 
         humanMapper.insert(human)
