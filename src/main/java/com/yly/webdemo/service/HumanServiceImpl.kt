@@ -1,6 +1,5 @@
 package com.yly.webdemo.service
 
-import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.yly.webdemo.YmlProTest
 import com.yly.webdemo.bean.Human
@@ -55,14 +54,19 @@ open class HumanServiceImpl : HumanService {
     override fun getHuman(): ArrayList<Human> {
         val objectMapper = ObjectMapper()
         var result = stringRedisTemplate.opsForValue().get("redisTest")
-        if (result == null) {
-            logger.info("缓存中不存在")
+        if (result.isNullOrEmpty()) {
             val humans = humanMapper.getHumans()
-            result = objectMapper.writeValueAsString(humans)
+            if (!humans.isNullOrEmpty()) {
+                result = objectMapper.writeValueAsString(humans)?.also {
+                    stringRedisTemplate.opsForValue().set("redisTest", it)
+                }
+            }
         }
-        return objectMapper.readValue(result, object : TypeReference<List<Human>>() {
-
-        })
+        result?.apply {
+            val listType = objectMapper.typeFactory.constructCollectionType(List::class.java, Human::class.java)
+            return objectMapper.readValue(result, listType)
+        }
+        return arrayListOf()
     }
 
     /**

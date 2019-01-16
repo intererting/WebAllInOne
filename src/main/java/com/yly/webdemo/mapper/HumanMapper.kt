@@ -13,7 +13,7 @@ interface HumanMapper {
             value = [Result(column = "name", property = "name")
                 , Result(column = "age", property = "age")]
     )
-    fun getHumans(): ArrayList<Human>
+    fun getHumans(): List<Human>
 
     @Insert("INSERT INTO t_user(name,age) values(#{name},#{age})")
     fun insert(human: Human)
