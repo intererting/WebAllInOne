@@ -1,13 +1,16 @@
 package com.yly.webdemo;
 
+import com.yly.webdemo.util.RedisConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -16,6 +19,7 @@ import javax.sql.DataSource;
 
 @EnableTransactionManagement
 @SpringBootApplication
+@EnableCaching
 @EnableConfigurationProperties(YmlProTest.class)
 @MapperScan("com.yly.webdemo.mapper")
 public class WebdemoApplication {

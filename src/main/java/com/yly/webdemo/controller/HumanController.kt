@@ -20,7 +20,7 @@ class HumanController {
 
     @PostMapping(value = ["/insertHuman"])
     fun insertHuman(@RequestParam("name") name: String
-                    , @RequestParam("age") age: Int): ResultInfo {
+                    , @RequestParam("age") age: Int): ResultInfo<Unit> {
         try {
             humanService.insertHuman(human = Human(name, age))
             return ResultSuccess()
@@ -30,7 +30,7 @@ class HumanController {
     }
 
     @PostMapping(value = ["/insertHumanBean"])
-    fun insertHuman(@RequestBody human: Human): ResultInfo {
+    fun insertHuman(@RequestBody human: Human): ResultInfo<Unit> {
         try {
             humanService.insertHuman(human = human)
             return ResultSuccess()
@@ -40,8 +40,19 @@ class HumanController {
         }
     }
 
+    @PostMapping(value = ["/getHumans"])
+    fun getHumans(): ResultInfo<List<Human>> {
+        try {
+            val result = humanService.getHuman()
+            return ResultSuccess(data = result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ResultFailed(message = e.message)
+        }
+    }
+
     @PostMapping(value = ["/uploadFile"])
-    fun insertHumanWithFile(@RequestParam file: MultipartFile): ResultInfo {
+    fun insertHumanWithFile(@RequestParam file: MultipartFile): ResultInfo<Unit> {
         try {
             humanService.saveFile(file)
             return ResultSuccess()
