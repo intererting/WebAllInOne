@@ -2,6 +2,8 @@ package com.yly.webdemo;
 
 import com.yly.webdemo.util.RedisConfig;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.*;
@@ -23,6 +25,8 @@ import javax.sql.DataSource;
 @EnableConfigurationProperties(YmlProTest.class)
 @MapperScan("com.yly.webdemo.mapper")
 public class WebdemoApplication {
+
+    private static Logger logger = LoggerFactory.getLogger(WebdemoApplication.class);
 
     @Bean
     public PlatformTransactionManager txManager(DataSource dataSource) {

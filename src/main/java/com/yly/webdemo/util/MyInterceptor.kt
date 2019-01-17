@@ -23,12 +23,10 @@ class MyInterceptor : HandlerInterceptor {
     }
 
     override fun postHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any, modelAndView: ModelAndView?) {
-        logger.info("postHandle")
         super.postHandle(request, response, handler, modelAndView)
     }
 
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, ex: Exception?) {
-        logger.info("afterCompletion")
         super.afterCompletion(request, response, handler, ex)
     }
 }
