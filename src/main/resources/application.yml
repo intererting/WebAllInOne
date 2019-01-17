@@ -28,8 +28,14 @@ spring:
   profiles:
     active: dev
 
+  kafka:
+    bootstrap-servers: 192.168.2.200:9092
+    consumer:
+      group-id: myGroup1,myGroup2
+
 mybatis:
   type-aliases-package: com.yly.webdemo.bean
+
 ymlpro:
   name: 于礼洋
   persons:

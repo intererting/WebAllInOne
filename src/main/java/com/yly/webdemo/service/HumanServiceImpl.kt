@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.StringRedisTemplate
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.multipart.MultipartFile
@@ -34,20 +35,25 @@ open class HumanServiceImpl : HumanService {
     @Autowired
     lateinit var redisBeanTemplate: RedisTemplate<String, Serializable>
 
+    @Autowired
+    lateinit var kafkaTemplate: KafkaTemplate<String, String>
+
     @Transactional
     override fun insertHuman(human: Human) {
-        logger.debug(ymlProTest.name)
-        for (person in ymlProTest.persons) {
-            logger.debug(person.name)
-        }
-        for ((key, value) in ymlProTest.maps) {
-            logger.info("$key   $value")
-        }
+//        logger.info(ymlProTest.name)
+//        for (person in ymlProTest.persons) {
+//            logger.info(person.name)
+//        }
+//        for ((key, value) in ymlProTest.maps) {
+//            logger.info("$key   $value")
+//        }
 
 //  redis
-        stringRedisTemplate.opsForValue().set("name", human.name)
-        redisBeanTemplate.opsForValue().set("human", human)
         humanMapper.insert(human)
+
+        //kafka
+        kafkaTemplate.send("test", "${human.name}  ${human.age}")
+
 //        humanMapper.insert(Human("异常测试是否回滚", 1))
     }
 
