@@ -11,4 +11,6 @@ interface HumanService {
 
     fun saveFile(file: MultipartFile)
 
+    fun testSecurity()
+
 }

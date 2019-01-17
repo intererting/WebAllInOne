@@ -19,6 +19,10 @@ import java.io.Serializable
 @Service
 open class HumanServiceImpl : HumanService {
 
+    //sping security
+    override fun testSecurity() {
+    }
+
     private val logger by lazy {
         LoggerFactory.getLogger(javaClass)
     }
