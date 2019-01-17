@@ -16,6 +16,6 @@ class KafkaTest {
 
     @KafkaListener(topics = ["test"], groupId = "myGroup1")
     fun processMessage(content: String) {
-        logger.info("kafka receive ${content}")
+        logger.warn("kafka receive ${content}")
     }
 }

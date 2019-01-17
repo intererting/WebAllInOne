@@ -37,17 +37,17 @@ public class WebdemoApplication {
         SpringApplication springApplication = new SpringApplication(WebdemoApplication.class);
         springApplication.addListeners((ApplicationListener<ApplicationEvent>) applicationEvent -> {
             if (applicationEvent instanceof ApplicationStartingEvent) {
-                System.out.println("ApplicationStartingEvent");
+                logger.info("ApplicationStartingEvent");
             } else if (applicationEvent instanceof ApplicationEnvironmentPreparedEvent) {
-                System.out.println("ApplicationEnvironmentPreparedEvent");
+                logger.info("ApplicationEnvironmentPreparedEvent");
             } else if (applicationEvent instanceof ApplicationPreparedEvent) {
-                System.out.println("ApplicationPreparedEvent");
+                logger.info("ApplicationPreparedEvent");
             } else if (applicationEvent instanceof ApplicationStartedEvent) {
-                System.out.println("ApplicationStartedEvent");
+                logger.info("ApplicationStartedEvent");
             } else if (applicationEvent instanceof ApplicationReadyEvent) {
-                System.out.println("ApplicationReadyEvent");
+                logger.info("ApplicationReadyEvent");
             } else if (applicationEvent instanceof ApplicationFailedEvent) {
-                System.out.println("ApplicationFailedEvent");
+                logger.info("ApplicationFailedEvent");
             }
         });
         springApplication.run();
