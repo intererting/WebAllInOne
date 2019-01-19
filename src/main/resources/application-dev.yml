@@ -2,3 +2,14 @@ server:
   port: 8080
   servlet:
     context-path: /yuliyang #路径映射  http://localhost:8081/yuliyang/hello
+
+spring:
+  redis:
+    host: 192.168.2.200
+    timeout: 10000
+    port: 6379
+
+  kafka:
+    bootstrap-servers: 192.168.2.200:9092
+    consumer:
+      group-id: myGroup1,myGroup2
